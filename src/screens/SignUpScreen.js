@@ -1,37 +1,36 @@
 import { useRef, useState } from "react";
 import { auth } from "../firebase";
 import "../styles/Account.css";
-import SignUpScreen from "./SignUpScreen";
+import SignInScreen from "./SignInScreen";
 
-export default function SignInScreen() {
+export default function SignUpScreen() {
 
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
 
-    const [ signUp, setSignUp ] = useState(false);
+    const [ signIn, setSignIn ] = useState(false);
 
-    function signIn(e) {
+    function signUp(e) {
         e.preventDefault();
-
-        auth.signInWithEmailAndPassword(
+        
+        auth.createUserWithEmailAndPassword(
             emailRef.current.value,
             passwordRef.current.value
         ).then((authUser) => {
-            console.log(authUser)
+            console.log(authUser);
         }).catch((error) => {
-            alert(error.message)
+            alert(error.message);
         });
-
     };
 
     return (
         <div>
-            {signUp ? (
-                <SignUpScreen/>
+            {signIn ? (
+                <SignInScreen/>
             ) : (
                 <div className="accountScreen">
                     <form>
-                        <h1>Sign In</h1>
+                        <h1>Sign Up</h1>
                         <input
                             ref={emailRef}
                             type="email"
@@ -44,13 +43,13 @@ export default function SignInScreen() {
                         />
                         <button
                             type="submit"
-                            onClick={signIn}
+                            onClick={signUp}
                         >
-                            Sign In
+                            Sign Up
                         </button>
                         <h4>
-                            <span className="accountScreenGray">New to Netflix? </span>
-                            <span className="accountScreenLink" onClick={() => setSignUp(true)}>Sign up now.</span>
+                            <span className="accountScreenGray">Have an account? </span>
+                            <span className="accountScreenLink" onClick={() => setSignIn(true)}>Sign in now.</span>
                         </h4>
                     </form>
                 </div>

@@ -1,30 +1,35 @@
 import { useState } from "react";
-import "../styles/LoginScreen.css";
+import "../styles/GetStarted.css";
 import SignInScreen from "./SignInScreen";
+import SignUpScreen from "./SignUpScreen";
 
 export default function GetStartedScreen() {
 
     const [ signIn, setSignIn ] = useState(false);
+    const [ signUp, setSignUp ] = useState(false);
 
     return (
-        <div className="loginScreen">
-            <div className="loginScreenBackground">
+        <div className="getStartedScreen">
+            <div className="getStartedScreenBackground">
                 <img
-                    className="loginScreenLogo"
+                    className="getStartedScreenLogo"
                     src="https://i.imgur.com/rOIeFnc.png" 
                     alt="netflix"
+                    onClick={(() => setSignIn(false)) && (() => setSignUp(false))}
                 />
                 <button 
-                    className="loginScreenButton"
+                    className="SignInButton"
                     onClick={() => setSignIn(true)}
                 >
                     Sign In
                 </button>
-                <div className="loginScreenGradient"/>
+                <div className="getStartedScreenGradient"/>
             </div>
-            <div className="loginScreenBody">
+            <div className="getStartedScreenBody">
                 {signIn ? (
                     <SignInScreen/>
+                ) : signUp ? (
+                    <SignUpScreen/>
                 ) : (
                     <>
                         <h1>
@@ -36,15 +41,15 @@ export default function GetStartedScreen() {
                         <h3>
                             Ready to watch? Enter your email to create or restart your membership.
                         </h3>
-                        <div className="loginScreenInput">
+                        <div className="getStartedScreenInput">
                             <form>
-                                <input 
+                                {/* <input 
                                     type="email"
                                     placeholder="Email"
-                                />
+                                /> */}
                                 <button 
-                                    className="loginScreenGetStarted"
-                                    onClick={() => setSignIn(true)}
+                                    className="getStartedScreenButton"
+                                    onClick={() => setSignUp(true)}
                                 >
                                     GET STARTED
                                 </button>

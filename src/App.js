@@ -8,6 +8,7 @@ import {
 import '../src/styles/App.css';
 import HomeScreen from './screens/HomeScreen';
 import GetStartedScreen from './screens/GetStartedScreen';
+import ProfileScreen from './screens/ProfilesScreen';
 import { auth } from './firebase';
 import { login, logout, selectUser } from './features/userSlice';
 
@@ -26,13 +27,13 @@ function App() {
         }));
       } else {
         // Logged out
-        dispatch(logout);
+        dispatch(logout());
       }
     });
 
     // Clean up
     return unsubscribe;
-  });
+  }, [dispatch]);
 
   return (
     <div className="app">
@@ -42,6 +43,7 @@ function App() {
         ) : (
           <Routes>
           <Route path="/" element={<HomeScreen/>}/>
+          <Route path="/profile" element={<ProfileScreen/>}/>
         </Routes>
         )}
       </Router>
