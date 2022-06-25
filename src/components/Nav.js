@@ -28,6 +28,7 @@ export default function Nav() {
                     className="navLogo"
                     src="https://i.imgur.com/rOIeFnc.png"
                     alt="netflix"
+                    onClick={() => navigate("/")}
                 />
                 <img
                     className="navAvatar"
